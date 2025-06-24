@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build: ./web/
+    container_name: rapidnotes-web
+    ports: 
+      - "80:80"
+  api:
+    build: ./src/
+    container_name: rapidnotes-api
+    ports: 
+      - "8080:8080"

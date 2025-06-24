@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rapidnotes-api-svc
+  labels:
+    app: rapidnotes-api
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: rapidnotes-api
+    tier: backend
+  type: LoadBalancer
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: rapidnotes-api-deploy
+  labels:
+    app: rapidnotes-api
+spec:
+  selector:
+    matchLabels:
+      app: rapidnotes-api
+      tier: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rapidnotes-api
+        tier: backend
+    spec:
+      containers:
+      - name: rapidnotes-api
+        image: a27818/rapidnotes:api-v7
+        ports:
+        - containerPort: 8080

@@ -33,6 +33,6 @@ spec:
     spec:
       containers:
       - name: rapidnotes-web
-        image: a27818/rapidnotes:web-v3
+        image: a27818/rapidnotes-1:web-v3
         ports:
         - containerPort: 80
